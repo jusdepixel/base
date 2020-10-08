@@ -1,0 +1,18 @@
+default:
+  suites:
+    register:
+      contexts:
+        - 'App\Features\RegisterContext'
+      paths:
+        - "%paths.base%/features/register.feature"
+    update_resume:
+      contexts:
+        - 'App\Features\UpdateResumeContext'
+      paths:
+        - "%paths.base%/features/update_resume.feature"
+    create_post:
+      contexts:
+        - 'App\Features\CreatePostContext'
+      paths:
+        - "%paths.base%/features/create_post.feature"
+
