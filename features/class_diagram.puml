@@ -1,0 +1,39 @@
+@startuml
+
+package "BusinessRules" #fff {
+
+    package "Entity" #ddd {
+
+        class User {
+            {field} id: int
+            {field} firstName: string
+            {field} lastName: string
+            {field} email: string
+            {field} password: string
+            {field} plainPassword: string
+            {field} registeredAt: DateTimeInterface
+        }
+
+        class Reader {
+            {field} signature: string
+        }
+
+        class Publisher {
+            {field} pseudo: string
+            {field} presentation: string
+        }
+
+        class Post {
+            {field} id: int
+            {field} title: string
+            {field} content: text
+        }
+
+        User <|-- Reader
+        User <|-- Publisher
+
+        Publisher "One" --o "Many" Post : To
+    }
+}
+
+@enduml
