@@ -14,13 +14,8 @@ package "BusinessRules" #fff {
             {field} registeredAt: DateTimeInterface
         }
 
-        class Reader {
-            {field} signature: string
-        }
-
-        class Publisher {
+        class Admin {
             {field} pseudo: string
-            {field} presentation: string
         }
 
         class Post {
@@ -29,10 +24,9 @@ package "BusinessRules" #fff {
             {field} content: text
         }
 
-        User <|-- Reader
-        User <|-- Publisher
+        User <|-- Admin
 
-        Publisher "One" --o "Many" Post : To
+        Admin "One" --o "Many" Post : To
     }
 }
 
