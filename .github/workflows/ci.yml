@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-latest]
+        operating-system: [debian-latest]
         php-versions: ['7.4']
     steps:
       - name: Checkout
