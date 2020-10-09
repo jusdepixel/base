@@ -10,7 +10,7 @@ return [
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['system' => true, 'dev' => true, 'test' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
-    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['system' => true, 'dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['system' => true, 'dev' => true],
     DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['system' => true],
 ];
