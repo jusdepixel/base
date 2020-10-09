@@ -32,7 +32,13 @@ class RegisterAdmin
      */
     public function execute(Admin $admin): Admin
     {
+        $pwPattern = "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/";
+
         Assert::lazy()
+            ->that($admin->getPseudo(), 'pseudo')
+                ->notBlank()
+                ->minLength(2)
+                ->maxLength(255)
             ->that($admin->getFirstName(), 'firstName')
                 ->notBlank()
                 ->minLength(2)
@@ -48,13 +54,7 @@ class RegisterAdmin
             ->that($admin->getPlainPassword(), 'plainPassword')
                 ->notBlank()
                 ->maxLength(255)
-                ->regex(
-                    "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/"
-                )
-            ->that($admin->getPseudo(), 'pseudo')
-                ->notBlank()
-                ->minLength(2)
-                ->maxLength(255)
+                ->regex($pwPattern)
             ->verifyNow()
         ;
 

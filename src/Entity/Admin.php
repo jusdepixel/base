@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Admin
  * @package App\Entity
+ * @ORM\Entity
  */
 class Admin extends User
 {

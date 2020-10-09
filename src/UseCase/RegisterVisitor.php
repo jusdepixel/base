@@ -32,6 +32,8 @@ class RegisterVisitor
      */
     public function execute(Visitor $visitor): Visitor
     {
+        $pwPattern = "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/";
+
         Assert::lazy()
             ->that($visitor->getFirstName(), 'firstName')
                 ->notBlank()
@@ -48,9 +50,7 @@ class RegisterVisitor
             ->that($visitor->getPlainPassword(), 'plainPassword')
                 ->notBlank()
                 ->maxLength(255)
-                ->regex(
-                    "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/"
-                )
+                ->regex($pwPattern)
             ->verifyNow()
         ;
 

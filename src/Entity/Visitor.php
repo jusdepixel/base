@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Visitor
  * @package App\Entity
+ * @ORM\Entity
  */
 class Visitor extends User
 {
