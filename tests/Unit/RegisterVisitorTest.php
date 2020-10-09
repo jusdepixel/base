@@ -5,7 +5,6 @@ namespace App\Tests\Unit;
 use App\Adapter\InMemory\Repository\VisitorRepository;
 use App\Entity\Visitor;
 use App\UseCase\RegisterVisitor;
-use Assert\LazyAssertion;
 use Assert\LazyAssertionException;
 use Generator;
 use PHPUnit\Framework\TestCase;
