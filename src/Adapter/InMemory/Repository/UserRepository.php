@@ -10,6 +10,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class UserRepository
+ * @package App\Adapter\InMemory\Repository
+ */
 class UserRepository implements UserGateway
 {
     /**

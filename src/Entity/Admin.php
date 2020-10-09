@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Class Admin
+ * @package App\Entity
+ */
 class Admin extends User
 {
     /**
@@ -31,6 +35,9 @@ class Admin extends User
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getRoles()
     {
         return ["ROLE_USER", 'ROLE_ADMIN'];

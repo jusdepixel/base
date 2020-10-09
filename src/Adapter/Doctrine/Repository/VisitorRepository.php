@@ -8,6 +8,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class VisitorRepository
+ * @package App\Adapter\Doctrine\Repository
  * @method Visitor|null find($id, $lockMode = null, $lockVersion = null)
  * @method Visitor|null findOneBy(array $criteria, array $orderBy = null)
  * @method Visitor[]    findAll()

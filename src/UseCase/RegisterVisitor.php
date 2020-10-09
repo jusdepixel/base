@@ -6,6 +6,10 @@ use App\Entity\Visitor;
 use App\Gateway\VisitorGateway;
 use Assert\Assert;
 
+/**
+ * Class RegisterVisitor
+ * @package App\UseCase
+ */
 class RegisterVisitor
 {
     /**
@@ -32,14 +36,18 @@ class RegisterVisitor
             ->that($visitor->getFirstName(), 'firstName')
                 ->notBlank()
                 ->minLength(2)
+                ->maxLength(255)
             ->that($visitor->getLastName(), 'lastName')
                 ->notBlank()
                 ->minLength(2)
+                ->maxLength(255)
             ->that($visitor->getEmail(), 'email')
                 ->notBlank()
+                ->maxLength(255)
                 ->email()
             ->that($visitor->getPlainPassword(), 'plainPassword')
                 ->notBlank()
+                ->maxLength(255)
                 ->regex(
                     "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/"
                 )
