@@ -1,6 +1,2 @@
 imports:
-  - { resource: services.yaml }
-
-services:
-  App\Gateway\AdminGateway: '@App\Adapter\InMemory\Repository\AdminRepository'
-  App\Gateway\VisitorGateway: '@App\Adapter\InMemory\Repository\VisitorRepository'
+  - { resource: services_prod.yaml }
