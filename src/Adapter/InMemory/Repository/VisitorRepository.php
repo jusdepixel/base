@@ -15,8 +15,5 @@ class VisitorRepository implements VisitorGateway
     /**
      * @param Visitor $visitor
      */
-    public function register(Visitor $visitor): void
-    {
-        // TODO: Implement register() method.
-    }
+    public function register(Visitor $visitor): void {}
 }

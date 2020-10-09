@@ -51,9 +51,6 @@ class UserRepository implements UserGateway
         ];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function findByEmail(string $email): ?UserInterface
     {
         if (!isset($this->users[$email])) {

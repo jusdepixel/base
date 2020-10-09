@@ -4,6 +4,8 @@ namespace App\Adapter\Doctrine\Repository;
 
 use App\Entity\Admin;
 use App\Gateway\AdminGateway;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -27,9 +29,12 @@ class AdminRepository extends UserRepository implements AdminGateway
 
     /**
      * @param Admin $admin
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function register(Admin $admin): void
     {
-        // TODO: Implement register() method.
+        $this->_em->persist($admin);
+        $this->_em->flush();
     }
 }
