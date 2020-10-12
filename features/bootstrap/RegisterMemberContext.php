@@ -55,8 +55,8 @@ class RegisterMemberContext implements Context
      */
     public function iFillTheMemberRegistrationForm()
     {
-        $this->Member = new Member();
-        $this->Member
+        $this->member = new Member();
+        $this->member
             ->setFirstName("John")
             ->setLastName("Doe")
             ->setEmail("john@doe.com")
@@ -69,6 +69,6 @@ class RegisterMemberContext implements Context
      */
     public function iCanLogInWithMyMemberAccount()
     {
-        Assertion::eq($this->Member, $this->registerMember->execute($this->Member));
+        Assertion::eq($this->member, $this->registerMember->execute($this->member));
     }
 }

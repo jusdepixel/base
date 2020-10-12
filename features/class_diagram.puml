@@ -14,7 +14,7 @@ package "BusinessRules" #fff {
             {field} registeredAt: DateTimeInterface
         }
 
-        class Visitor {
+        class Member {
         }
 
         class Admin {
@@ -27,7 +27,7 @@ package "BusinessRules" #fff {
             {field} content: text
         }
 
-        User <|-- Visitor
+        User <|-- Member
         User <|-- Admin
 
         Admin "One" --o "Many" Post : To
