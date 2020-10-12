@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Visitor;
+use App\Entity\Member;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class VisitorType
+ * Class MemberType
  * @package App\Form
  */
-class VisitorType extends RegisterType
+class MemberType extends RegisterType
 {
     /**
      * @param OptionsResolver $resolver
@@ -17,7 +17,7 @@ class VisitorType extends RegisterType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Visitor::class,
+            'data_class' => Member::class,
         ]);
     }
 }

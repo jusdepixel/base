@@ -2,31 +2,31 @@
 
 namespace App\Features;
 
-use App\Adapter\InMemory\Repository\VisitorRepository;
-use App\Entity\Visitor;
-use App\UseCase\RegisterVisitor;
+use App\Adapter\InMemory\Repository\MemberRepository;
+use App\Entity\Member;
+use App\UseCase\RegisterMember;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Behat\Behat\Context\Context;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class RegisterVisitorContext implements Context
+class RegisterMemberContext implements Context
 {
     /**
-     * @var RegisterVisitor
+     * @var RegisterMember
      */
-    private RegisterVisitor $registerVisitor;
+    private RegisterMember $registerMember;
 
     /**
-     * @var Visitor
+     * @var Member
      */
-    private Visitor $visitor;
+    private Member $member;
 
     /**
-     * @Given /^I need to register to have a visitor account$/
+     * @Given /^I need to register to have a Member account$/
      */
-    public function iNeedToRegisterToHaveAVisitorAccount()
+    public function iNeedToRegisterToHaveAMemberAccount()
     {
         $userPasswordEncoder = new class () implements UserPasswordEncoderInterface
         {
@@ -47,16 +47,16 @@ class RegisterVisitorContext implements Context
             }
         };
 
-        $this->registerVisitor = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
+        $this->registerMember = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
     }
 
     /**
-     * @When /^I fill the visitor registration form$/
+     * @When /^I fill the Member registration form$/
      */
-    public function iFillTheVisitorRegistrationForm()
+    public function iFillTheMemberRegistrationForm()
     {
-        $this->visitor = new Visitor();
-        $this->visitor
+        $this->Member = new Member();
+        $this->Member
             ->setFirstName("John")
             ->setLastName("Doe")
             ->setEmail("john@doe.com")
@@ -64,11 +64,11 @@ class RegisterVisitorContext implements Context
     }
 
     /**
-     * @Then /^I can log in with my visitor account$/
+     * @Then /^I can log in with my Member account$/
      * @throws AssertionFailedException
      */
-    public function iCanLogInWithMyVisitorAccount()
+    public function iCanLogInWithMyMemberAccount()
     {
-        Assertion::eq($this->visitor, $this->registerVisitor->execute($this->visitor));
+        Assertion::eq($this->Member, $this->registerMember->execute($this->Member));
     }
 }

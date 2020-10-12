@@ -2,47 +2,47 @@
 
 namespace App\Tests\Unit;
 
-use App\Adapter\InMemory\Repository\VisitorRepository;
-use App\Entity\Visitor;
-use App\UseCase\RegisterVisitor;
+use App\Adapter\InMemory\Repository\MemberRepository;
+use App\Entity\Member;
+use App\UseCase\RegisterMember;
 use Assert\LazyAssertionException;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class RegisterVisitorTest extends TestCase
+class RegisterMemberTest extends TestCase
 {
     public function testSuccessRegistration()
     {
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
+        $useCase = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
 
-        $visitor = new Visitor();
-        $visitor
+        $member = new Member();
+        $member
             ->setFirstName("John")
             ->setLastName("Doe")
             ->setEmail("john@doe.com")
             ->setPlainPassword("Password123*");
 
-        $this->assertEquals($visitor, $useCase->execute($visitor));
+        $this->assertEquals($member, $useCase->execute($member));
     }
 
     /**
      * @dataProvider provideBadRegistration
-     * @param Visitor $visitor
+     * @param Member $member
      */
-    public function testBadRegistration(Visitor $visitor)
+    public function testBadRegistration(Member $member)
     {
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
+        $useCase = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
 
         $this->expectException(LazyAssertionException::class);
 
-        $useCase->execute($visitor);
+        $useCase->execute($member);
     }
 
     /**
@@ -51,14 +51,14 @@ class RegisterVisitorTest extends TestCase
     public function provideBadRegistration(): Generator
     {
         yield [
-            (new Visitor())
+            (new Member())
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")
                 ->setPlainPassword("Password123*")
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("")
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")
@@ -66,7 +66,7 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("j")
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")
@@ -74,14 +74,14 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setEmail("john@doe.com")
                 ->setPlainPassword("Password123*")
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("")
                 ->setEmail("john@doe.com")
@@ -89,7 +89,7 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("d")
                 ->setEmail("john@doe.com")
@@ -97,14 +97,14 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setPlainPassword("Password123*")
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setEmail("")
@@ -112,7 +112,7 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setEmail("failure")
@@ -120,14 +120,14 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")
@@ -135,7 +135,7 @@ class RegisterVisitorTest extends TestCase
         ];
 
         yield [
-            (new Visitor())
+            (new Member())
                 ->setFirstName("John")
                 ->setLastName("Doe")
                 ->setEmail("john@doe.com")

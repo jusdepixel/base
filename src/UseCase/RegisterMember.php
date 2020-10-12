@@ -2,21 +2,21 @@
 
 namespace App\UseCase;
 
-use App\Entity\Visitor;
-use App\Gateway\VisitorGateway;
+use App\Entity\Member;
+use App\Gateway\MemberGateway;
 use Assert\Assert;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class RegisterVisitor
+ * Class RegisterMember
  * @package App\UseCase
  */
-class RegisterVisitor
+class RegisterMember
 {
     /**
-     * @var VisitorGateway
+     * @var MemberGateway
      */
-    private VisitorGateway $gateway;
+    private MemberGateway $gateway;
 
     /**
      * @var UserPasswordEncoderInterface
@@ -24,48 +24,48 @@ class RegisterVisitor
     private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
-     * RegisterVisitor constructor.
-     * @param VisitorGateway $gateway
+     * RegisterMember constructor.
+     * @param MemberGateway $gateway
      * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function __construct(VisitorGateway $gateway, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(MemberGateway $gateway, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->gateway = $gateway;
         $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
-     * @param Visitor $visitor
-     * @return Visitor
+     * @param Member $member
+     * @return Member
      */
-    public function execute(Visitor $visitor): Visitor
+    public function execute(Member $member): Member
     {
         $pwPattern = "/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/";
 
         Assert::lazy()
-            ->that($visitor->getFirstName(), 'firstName')
+            ->that($member->getFirstName(), 'firstName')
                 ->notBlank()
                 ->minLength(2)
                 ->maxLength(255)
-            ->that($visitor->getLastName(), 'lastName')
+            ->that($member->getLastName(), 'lastName')
                 ->notBlank()
                 ->minLength(2)
                 ->maxLength(255)
-            ->that($visitor->getEmail(), 'email')
+            ->that($member->getEmail(), 'email')
                 ->notBlank()
                 ->maxLength(255)
                 ->email()
-            ->that($visitor->getPlainPassword(), 'plainPassword')
+            ->that($member->getPlainPassword(), 'plainPassword')
                 ->notBlank()
                 ->maxLength(255)
                 ->regex($pwPattern)
             ->verifyNow()
         ;
 
-        $visitor->setPassword($this->passwordEncoder->encodePassword($visitor, $visitor->getPlainPassword()));
+        $member->setPassword($this->passwordEncoder->encodePassword($member, $member->getPlainPassword()));
 
-        $this->gateway->register($visitor);
+        $this->gateway->register($member);
 
-        return $visitor;
+        return $member;
     }
 }
