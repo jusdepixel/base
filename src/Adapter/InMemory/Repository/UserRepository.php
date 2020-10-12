@@ -2,7 +2,7 @@
 
 namespace App\Adapter\InMemory\Repository;
 
-use App\Entity\Visitor;
+use App\Entity\Member;
 use App\Entity\Admin;
 use App\Entity\User;
 use App\Gateway\UserGateway;
@@ -27,13 +27,13 @@ class UserRepository implements UserGateway
      */
     public function __construct(UserPasswordEncoderInterface $userPasswordEncoder)
     {
-        $visitor = (new Visitor())
+        $member = (new Member())
             ->setFirstName("John")
             ->setLastName("Doe")
-            ->setEmail("visitor@doe.com")
+            ->setEmail("Member@doe.com")
         ;
 
-        $visitor->setPassword($userPasswordEncoder->encodePassword($visitor, "Password123!"));
+        $member->setPassword($userPasswordEncoder->encodePassword($member, "Password123!"));
 
 
         $admin = (new Admin())
@@ -46,7 +46,7 @@ class UserRepository implements UserGateway
         $admin->setPassword($userPasswordEncoder->encodePassword($admin, "Password123!"));
 
         $this->users = [
-            "visitor@doe.com" => $visitor,
+            "Member@doe.com" => $member,
             "admin@doe.com" => $admin
         ];
     }

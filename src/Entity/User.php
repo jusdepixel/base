@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"visitor"="App\Entity\Visitor", "admin"="App\Entity\Admin"})
+ * @ORM\DiscriminatorMap({"member"="App\Entity\Member", "admin"="App\Entity\Admin"})
  */
 abstract class User implements UserInterface
 {

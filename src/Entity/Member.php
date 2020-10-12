@@ -5,17 +5,17 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Visitor
+ * Class Member
  * @package App\Entity
  * @ORM\Entity
  */
-class Visitor extends User
+class Member extends User
 {
     /**
      * @return string[]
      */
     public function getRoles()
     {
-        return ["ROLE_USER", 'ROLE_VISITOR'];
+        return ["ROLE_USER", 'ROLE_MEMBER'];
     }
 }

@@ -29,4 +29,4 @@ services:
 
     App\Gateway\UserGateway: '@App\Adapter\InMemory\Repository\UserRepository'
     App\Gateway\AdminGateway: '@App\Adapter\InMemory\Repository\AdminRepository'
-    App\Gateway\VisitorGateway: '@App\Adapter\InMemory\Repository\VisitorRepository'
+    App\Gateway\MemberGateway: '@App\Adapter\InMemory\Repository\MemberRepository'
