@@ -1,10 +1,15 @@
 default:
   suites:
-    register:
+    register_visitor:
       contexts:
-        - 'App\Features\RegisterContext'
+        - 'App\Features\RegisterVisitorContext'
       paths:
-        - "%paths.base%/features/register.feature"
+        - "%paths.base%/features/register_visitor.feature"
+    register_admin:
+      contexts:
+        - 'App\Features\RegisterAdminContext'
+      paths:
+        - "%paths.base%/features/register_admin.feature"
     update_resume:
       contexts:
         - 'App\Features\UpdateResumeContext'

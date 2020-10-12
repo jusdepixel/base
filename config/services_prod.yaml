@@ -1,0 +1,7 @@
+imports:
+  - { resource: services.yaml }
+
+services:
+  App\Gateway\UserGateway: '@App\Adapter\Doctrine\Repository\UserRepository'
+  App\Gateway\AdminGateway: '@App\Adapter\Doctrine\Repository\AdminRepository'
+  App\Gateway\VisitorGateway: '@App\Adapter\Doctrine\Repository\VisitorRepository'
