@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Adapter\Doctrine\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class User
@@ -15,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"visitor"="App\Entity\Visitor", "admin"="App\Entity\Admin"})
  */
-abstract class User
+abstract class User implements UserInterface
 {
     /**
      * @var int |null
@@ -51,7 +53,6 @@ abstract class User
 
     /**
      * @var string | null
-     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     protected ?string $plainPassword = null;
@@ -180,4 +181,22 @@ abstract class User
     {
         return $this->registeredAt;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt() {}
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials() {}
 }

@@ -5,6 +5,7 @@ namespace App\UseCase;
 use App\Entity\Visitor;
 use App\Gateway\VisitorGateway;
 use Assert\Assert;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class RegisterVisitor
@@ -18,12 +19,19 @@ class RegisterVisitor
     private VisitorGateway $gateway;
 
     /**
+     * @var UserPasswordEncoderInterface
+     */
+    private UserPasswordEncoderInterface $passwordEncoder;
+
+    /**
      * RegisterVisitor constructor.
      * @param VisitorGateway $gateway
+     * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function __construct(VisitorGateway $gateway)
+    public function __construct(VisitorGateway $gateway, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->gateway = $gateway;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -53,6 +61,8 @@ class RegisterVisitor
                 ->regex($pwPattern)
             ->verifyNow()
         ;
+
+        $visitor->setPassword($this->passwordEncoder->encodePassword($visitor, $visitor->getPlainPassword()));
 
         $this->gateway->register($visitor);
 

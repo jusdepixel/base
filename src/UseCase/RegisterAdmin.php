@@ -5,6 +5,7 @@ namespace App\UseCase;
 use App\Entity\Admin;
 use App\Gateway\AdminGateway;
 use Assert\Assert;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class RegisterAdmin
@@ -18,12 +19,19 @@ class RegisterAdmin
     private AdminGateway $gateway;
 
     /**
+     * @var UserPasswordEncoderInterface
+     */
+    private UserPasswordEncoderInterface $passwordEncoder;
+
+    /**
      * RegisterAdmin constructor.
      * @param AdminGateway $gateway
+     * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function __construct(AdminGateway $gateway)
+    public function __construct(AdminGateway $gateway, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->gateway = $gateway;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -57,6 +65,8 @@ class RegisterAdmin
                 ->regex($pwPattern)
             ->verifyNow()
         ;
+
+        $admin->setPassword($this->passwordEncoder->encodePassword($admin, $admin->getPlainPassword()));
 
         $this->gateway->register($admin);
 

@@ -8,12 +8,16 @@ use App\UseCase\RegisterVisitor;
 use Assert\LazyAssertionException;
 use Generator;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegisterVisitorTest extends TestCase
 {
     public function testSuccessRegistration()
     {
-        $useCase = new RegisterVisitor(new VisitorRepository());
+        $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
+        $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
+
+        $useCase = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
 
         $visitor = new Visitor();
         $visitor
@@ -31,7 +35,10 @@ class RegisterVisitorTest extends TestCase
      */
     public function testBadRegistration(Visitor $visitor)
     {
-        $useCase = new RegisterVisitor(new VisitorRepository());
+        $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
+        $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
+
+        $useCase = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
 
         $this->expectException(LazyAssertionException::class);
 
