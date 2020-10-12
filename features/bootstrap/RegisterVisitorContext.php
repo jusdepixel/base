@@ -8,6 +8,8 @@ use App\UseCase\RegisterVisitor;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Behat\Behat\Context\Context;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class RegisterVisitorContext implements Context
 {
@@ -26,7 +28,26 @@ class RegisterVisitorContext implements Context
      */
     public function iNeedToRegisterToHaveAVisitorAccount()
     {
-        $this->registerVisitor = new RegisterVisitor(new VisitorRepository());
+        $userPasswordEncoder = new class () implements UserPasswordEncoderInterface
+        {
+            /**
+             * @inheritDoc
+             */
+            public function encodePassword(UserInterface $user, string $plainPassword)
+            {
+                return "hash_password";
+            }
+
+            public function isPasswordValid(UserInterface $user, string $raw)
+            {
+            }
+
+            public function needsRehash(UserInterface $user): bool
+            {
+            }
+        };
+
+        $this->registerVisitor = new RegisterVisitor(new VisitorRepository(), $userPasswordEncoder);
     }
 
     /**

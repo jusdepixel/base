@@ -8,6 +8,8 @@ use App\UseCase\RegisterAdmin;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Behat\Behat\Context\Context;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class RegisterAdminContext implements Context
 {
@@ -26,7 +28,26 @@ class RegisterAdminContext implements Context
      */
     public function iNeedToRegisterToHaveAnAdminAccount()
     {
-        $this->registerAdmin = new RegisterAdmin(new AdminRepository());
+        $userPasswordEncoder = new class () implements UserPasswordEncoderInterface
+        {
+            /**
+             * @inheritDoc
+             */
+            public function encodePassword(UserInterface $user, string $plainPassword)
+            {
+                return "hash_password";
+            }
+
+            public function isPasswordValid(UserInterface $user, string $raw)
+            {
+            }
+
+            public function needsRehash(UserInterface $user): bool
+            {
+            }
+        };
+
+        $this->registerAdmin = new RegisterAdmin(new AdminRepository(), $userPasswordEncoder);
     }
 
     /**
