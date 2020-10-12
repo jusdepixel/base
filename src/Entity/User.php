@@ -185,7 +185,9 @@ abstract class User implements UserInterface
     /**
      * @inheritDoc
      */
-    public function getSalt() {}
+    public function getSalt()
+    {
+    }
 
     /**
      * @inheritDoc
@@ -198,5 +200,7 @@ abstract class User implements UserInterface
     /**
      * @inheritDoc
      */
-    public function eraseCredentials() {}
+    public function eraseCredentials()
+    {
+    }
 }
