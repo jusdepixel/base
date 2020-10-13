@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class RegisterMemberController
  * @package App\Controller
  */
-class RegisterMemberController extends AbstractController
+class MemberController extends AbstractController
 {
     /**
      * @var RegisterMember
