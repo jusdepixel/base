@@ -12,7 +12,7 @@ use Generator;
  * Class RegisterAdminTest
  * @package App\Tests\Integration
  */
-class RegisterAdminTest extends WebTestCase
+class AdminRegisterTest extends WebTestCase
 {
     public function testSuccessFormRegister()
     {
@@ -23,7 +23,7 @@ class RegisterAdminTest extends WebTestCase
 
         $crawler = $client->request(
             Request::METHOD_GET,
-            $router->generate("register_admin")
+            $router->generate("admin_register")
         );
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -54,7 +54,7 @@ class RegisterAdminTest extends WebTestCase
 
         $crawler = $client->request(
             Request::METHOD_GET,
-            $router->generate("register_admin")
+            $router->generate("admin_register")
         );
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);

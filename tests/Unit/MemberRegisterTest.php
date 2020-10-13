@@ -4,7 +4,7 @@ namespace App\Tests\Unit;
 
 use App\Adapter\InMemory\Repository\MemberRepository;
 use App\Entity\Member;
-use App\UseCase\RegisterMember;
+use App\UseCase\MemberRegister;
 use Assert\LazyAssertionException;
 use Generator;
 use PHPUnit\Framework\TestCase;
@@ -14,14 +14,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class RegisterMemberTest
  * @package App\Tests\Unit
  */
-class RegisterMemberTest extends TestCase
+class MemberRegisterTest extends TestCase
 {
     public function testSuccessRegistration()
     {
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
+        $useCase = new MemberRegister(new MemberRepository(), $userPasswordEncoder);
 
         $member = new Member();
         $member
@@ -42,7 +42,7 @@ class RegisterMemberTest extends TestCase
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
+        $useCase = new MemberRegister(new MemberRepository(), $userPasswordEncoder);
 
         $this->expectException(LazyAssertionException::class);
 

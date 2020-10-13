@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class RegisterAdmin
  * @package App\UseCase
  */
-class RegisterAdmin
+class AdminRegister
 {
     /**
      * @var AdminGateway
