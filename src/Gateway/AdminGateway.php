@@ -14,4 +14,9 @@ interface AdminGateway extends UserGateway
      * @param Admin $admin
      */
     public function register(Admin $admin): void;
+
+    /**
+     * @param Admin $admin
+     */
+    public function updateResume(Admin $admin): void;
 }

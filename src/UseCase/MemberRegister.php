@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class RegisterMember
  * @package App\UseCase
  */
-class RegisterMember
+class MemberRegister
 {
     /**
      * @var MemberGateway

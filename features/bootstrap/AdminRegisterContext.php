@@ -4,14 +4,14 @@ namespace App\Features;
 
 use App\Adapter\InMemory\Repository\AdminRepository;
 use App\Entity\Admin;
-use App\UseCase\RegisterAdmin;
+use App\UseCase\AdminRegister;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Behat\Behat\Context\Context;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class RegisterAdminContext implements Context
+class AdminRegisterContext implements Context
 {
     /**
      * @var Admin
@@ -19,9 +19,9 @@ class RegisterAdminContext implements Context
     private Admin $admin;
 
     /**
-     * @var RegisterAdmin
+     * @var AdminRegister
      */
-    private RegisterAdmin $registerAdmin;
+    private AdminRegister $registerAdmin;
 
     /**
      * @Given /^I need to register to have an admin account$/
@@ -47,7 +47,7 @@ class RegisterAdminContext implements Context
             }
         };
 
-        $this->registerAdmin = new RegisterAdmin(new AdminRepository(), $userPasswordEncoder);
+        $this->registerAdmin = new AdminRegister(new AdminRepository(), $userPasswordEncoder);
     }
 
     /**

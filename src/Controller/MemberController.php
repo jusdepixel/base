@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Member;
 use App\Form\MemberType;
-use App\UseCase\RegisterMember;
+use App\UseCase\MemberRegister;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,25 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class MemberController extends AbstractController
 {
     /**
-     * @var RegisterMember
+     * @var MemberRegister
      */
-    private RegisterMember $registerMember;
+    private MemberRegister $registerMember;
 
     /**
      * RegisterMemberController constructor.
-     * @param RegisterMember $registerMember
+     * @param MemberRegister $registerMember
      */
-    public function __construct(RegisterMember $registerMember)
+    public function __construct(MemberRegister $registerMember)
     {
         $this->registerMember = $registerMember;
     }
 
     /**
-     * @Route("/register/member", name="register_member")
+     * @Route("/member/register", name="member_register")
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function index(Request $request)
+    public function register(Request $request)
     {
         $member = new Member();
 
@@ -49,9 +49,21 @@ class MemberController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('register/member.html.twig', [
-            'controller_name' => 'RegisterMemberController',
+        return $this->render('member/register.html.twig', [
+            'controller_name' => 'MemberController - Register',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("member/resume", name="member_resume")
+     * @param Request $request
+     * @return Response
+     */
+    public function resume(Request $request)
+    {
+        return $this->render('admin/resume.html.twig', [
+            'controller_name' => 'MemberController - Resume',
         ]);
     }
 }

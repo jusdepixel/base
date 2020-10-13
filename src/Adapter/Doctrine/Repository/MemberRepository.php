@@ -37,4 +37,12 @@ class MemberRepository extends UserRepository implements MemberGateway
         $this->_em->persist($member);
         $this->_em->flush();
     }
+
+    /**
+     * @param Member $member
+     */
+    public function updateResume(Member $member): void
+    {
+        // TODO: Implement updateResume() method.
+    }
 }

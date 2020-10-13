@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Admin;
 use App\Form\AdminType;
-use App\UseCase\RegisterAdmin;
+use App\UseCase\AdminRegister;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,22 +18,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @var RegisterAdmin
+     * @var AdminRegister
      */
-    private RegisterAdmin $registerAdmin;
+    private AdminRegister $registerAdmin;
 
     /**
      * RegisterAdminController constructor.
-     * @param RegisterAdmin $registerAdmin
+     * @param AdminRegister $registerAdmin
      */
-    public function __construct(RegisterAdmin $registerAdmin)
+    public function __construct(AdminRegister $registerAdmin)
     {
         $this->registerAdmin = $registerAdmin;
     }
 
 
     /**
-     * @Route("/register/admin", name="register_admin")
+     * @Route("/admin/register", name="admin_register")
      * @param Request $request
      * @return RedirectResponse|Response
      */
@@ -50,9 +50,21 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('register/admin.html.twig', [
-            'controller_name' => 'RegisterAdminController',
+        return $this->render('admin/register.html.twig', [
+            'controller_name' => 'AdminController - Register',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("admin/resume", name="admin_resume")
+     * @param Request $request
+     * @return Response
+     */
+    public function resume(Request $request)
+    {
+        return $this->render('admin/resume.html.twig', [
+            'controller_name' => 'AdminController - Resume',
         ]);
     }
 }

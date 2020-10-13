@@ -18,4 +18,11 @@ class AdminRepository implements AdminGateway
     public function register(Admin $admin): void
     {
     }
+
+    /**
+     * @param Admin $admin
+     */
+    public function updateResume(Admin $admin): void
+    {
+    }
 }

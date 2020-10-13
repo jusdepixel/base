@@ -37,4 +37,12 @@ class AdminRepository extends UserRepository implements AdminGateway
         $this->_em->persist($admin);
         $this->_em->flush();
     }
+
+    /**
+     * @param Admin $admin
+     */
+    public function updateResume(Admin $admin): void
+    {
+        // TODO: Implement updateResume() method.
+    }
 }

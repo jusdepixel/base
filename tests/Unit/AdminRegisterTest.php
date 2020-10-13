@@ -4,7 +4,7 @@ namespace App\Tests\Unit;
 
 use App\Adapter\InMemory\Repository\AdminRepository;
 use App\Entity\Admin;
-use App\UseCase\RegisterAdmin;
+use App\UseCase\AdminRegister;
 use Assert\LazyAssertionException;
 use Generator;
 use PHPUnit\Framework\TestCase;
@@ -14,14 +14,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Class RegisterAdminTest
  * @package App\Tests\Unit
  */
-class RegisterAdminTest extends TestCase
+class AdminRegisterTest extends TestCase
 {
     public function testSuccessRegistration()
     {
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterAdmin(new AdminRepository(), $userPasswordEncoder);
+        $useCase = new AdminRegister(new AdminRepository(), $userPasswordEncoder);
 
         $admin = new Admin();
         $admin
@@ -43,7 +43,7 @@ class RegisterAdminTest extends TestCase
         $userPasswordEncoder = $this->createMock(UserPasswordEncoderInterface::class);
         $userPasswordEncoder->method("encodePassword")->willReturn("hash_password");
 
-        $useCase = new RegisterAdmin(new AdminRepository(), $userPasswordEncoder);
+        $useCase = new AdminRegister(new AdminRepository(), $userPasswordEncoder);
 
         $this->expectException(LazyAssertionException::class);
 

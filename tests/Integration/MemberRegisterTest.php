@@ -12,7 +12,7 @@ use Generator;
  * Class RegisterMemberTest
  * @package App\Tests\Integration
  */
-class RegisterMemberTest extends WebTestCase
+class MemberRegisterTest extends WebTestCase
 {
     public function testSuccessFormRegister()
     {
@@ -23,7 +23,7 @@ class RegisterMemberTest extends WebTestCase
 
         $crawler = $client->request(
             Request::METHOD_GET,
-            $router->generate("register_member")
+            $router->generate("member_register")
         );
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -53,7 +53,7 @@ class RegisterMemberTest extends WebTestCase
 
         $crawler = $client->request(
             Request::METHOD_GET,
-            $router->generate("register_member")
+            $router->generate("member_register")
         );
 
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);

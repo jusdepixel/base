@@ -4,19 +4,19 @@ namespace App\Features;
 
 use App\Adapter\InMemory\Repository\MemberRepository;
 use App\Entity\Member;
-use App\UseCase\RegisterMember;
+use App\UseCase\MemberRegister;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Behat\Behat\Context\Context;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class RegisterMemberContext implements Context
+class MemberRegisterContext implements Context
 {
     /**
-     * @var RegisterMember
+     * @var MemberRegister
      */
-    private RegisterMember $registerMember;
+    private MemberRegister $registerMember;
 
     /**
      * @var Member
@@ -47,7 +47,7 @@ class RegisterMemberContext implements Context
             }
         };
 
-        $this->registerMember = new RegisterMember(new MemberRepository(), $userPasswordEncoder);
+        $this->registerMember = new MemberRegister(new MemberRepository(), $userPasswordEncoder);
     }
 
     /**
