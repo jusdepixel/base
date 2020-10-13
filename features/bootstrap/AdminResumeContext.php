@@ -4,28 +4,28 @@ namespace App\Features;
 
 use Behat\Behat\Context\Context;
 
-class UpdateResumeContext implements Context
+class AdminResumeContext implements Context
 {
     /**
-     * @Given /^I want to update my resume$/
+     * @Given /^I want to update my Admin resume$/
      */
-    public function iWantToUpdateMyResume()
+    public function iWantToUpdateMyAdminResume()
     {
         throw new \Behat\Behat\Tester\Exception\PendingException();
     }
 
     /**
-     * @When /^I fill my resume form$/
+     * @When /^I fill my Admin resume form$/
      */
-    public function iFillMyResumeForm()
+    public function iFillMyAdminResumeForm()
     {
         throw new \Behat\Behat\Tester\Exception\PendingException();
     }
 
     /**
-     * @Then /^I have a full resume$/
+     * @Then /^I have a full Admin resume$/
      */
-    public function iHaveAFullResume()
+    public function iHaveAFullAdminResume()
     {
         throw new \Behat\Behat\Tester\Exception\PendingException();
     }

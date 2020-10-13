@@ -1,23 +1,23 @@
 default:
   suites:
-    register_member:
+    admin_register:
       contexts:
-        - 'App\Features\RegisterMemberContext'
+        - 'App\Features\AdminRegisterContext'
       paths:
-        - "%paths.base%/features/register_member.feature"
-    register_admin:
+        - "%paths.base%/features/admin_register.feature"
+    admin_resume:
       contexts:
-        - 'App\Features\RegisterAdminContext'
+        - 'App\Features\AdminResumeContext'
       paths:
-        - "%paths.base%/features/register_admin.feature"
-    update_resume:
+        - "%paths.base%/features/admin_resume.feature"
+    member_register:
       contexts:
-        - 'App\Features\UpdateResumeContext'
+        - 'App\Features\MemberRegisterContext'
       paths:
-        - "%paths.base%/features/update_resume.feature"
-    create_post:
+        - "%paths.base%/features/member_register.feature"
+    member_resume:
       contexts:
-        - 'App\Features\CreatePostContext'
+        - 'App\Features\MemberResumeContext'
       paths:
-        - "%paths.base%/features/create_post.feature"
+        - "%paths.base%/features/member_resume.feature"
 

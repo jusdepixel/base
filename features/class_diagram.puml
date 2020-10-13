@@ -21,16 +21,8 @@ package "BusinessRules" #fff {
             {field} pseudo: string
         }
 
-        class Post {
-            {field} id: int
-            {field} title: string
-            {field} content: text
-        }
-
         User <|-- Member
         User <|-- Admin
-
-        Admin "One" --o "Many" Post : To
     }
 }
 
