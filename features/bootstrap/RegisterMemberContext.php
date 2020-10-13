@@ -24,7 +24,7 @@ class RegisterMemberContext implements Context
     private Member $member;
 
     /**
-     * @Given /^I need to register to have a Member account$/
+     * @Given /^I need to register to have a member account$/
      */
     public function iNeedToRegisterToHaveAMemberAccount()
     {
@@ -51,7 +51,7 @@ class RegisterMemberContext implements Context
     }
 
     /**
-     * @When /^I fill the Member registration form$/
+     * @When /^I fill the member registration form$/
      */
     public function iFillTheMemberRegistrationForm()
     {
@@ -64,7 +64,7 @@ class RegisterMemberContext implements Context
     }
 
     /**
-     * @Then /^I can log in with my Member account$/
+     * @Then /^I can log in with my member account$/
      * @throws AssertionFailedException
      */
     public function iCanLogInWithMyMemberAccount()

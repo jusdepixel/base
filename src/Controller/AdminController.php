@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class RegisterAdminController
+ * Class AdminController
  * @package App\Controller
  */
-class RegisterAdminController extends AbstractController
+class AdminController extends AbstractController
 {
     /**
      * @var RegisterAdmin
@@ -37,7 +37,7 @@ class RegisterAdminController extends AbstractController
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function index(Request $request)
+    public function register(Request $request)
     {
         $admin = new Admin();
 

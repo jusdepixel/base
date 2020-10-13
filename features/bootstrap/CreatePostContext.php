@@ -3,7 +3,12 @@
 namespace App\Features;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 
+/**
+ * Class CreatePostContext
+ * @package App\Features
+ */
 class CreatePostContext implements Context
 {
     /**
@@ -11,7 +16,7 @@ class CreatePostContext implements Context
      */
     public function iWantToCreateAPost()
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        throw new PendingException();
     }
 
     /**
@@ -19,7 +24,7 @@ class CreatePostContext implements Context
      */
     public function iFillMyPostForm()
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        throw new PendingException();
     }
 
     /**
@@ -27,6 +32,6 @@ class CreatePostContext implements Context
      */
     public function myPostIsOnline()
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        throw new PendingException();
     }
 }

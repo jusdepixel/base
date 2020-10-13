@@ -10,6 +10,10 @@ use Generator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class RegisterAdminTest
+ * @package App\Tests\Unit
+ */
 class RegisterAdminTest extends TestCase
 {
     public function testSuccessRegistration()
