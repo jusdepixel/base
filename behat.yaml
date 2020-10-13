@@ -10,16 +10,6 @@ default:
         - 'App\Features\RegisterAdminContext'
       paths:
         - "%paths.base%/features/register_admin.feature"
-    login_member:
-      contexts:
-        - 'App\Features\LoginMemberContext'
-      paths:
-        - "%paths.base%/features/login_member.feature"
-    login_admin:
-      contexts:
-        - 'App\Features\LoginAdminContext'
-      paths:
-        - "%paths.base%/features/login_admin.feature"
     update_resume:
       contexts:
         - 'App\Features\UpdateResumeContext'

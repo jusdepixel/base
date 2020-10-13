@@ -15,5 +15,7 @@ class MemberRepository implements MemberGateway
     /**
      * @param Member $member
      */
-    public function register(Member $member): void {}
+    public function register(Member $member): void
+    {
+    }
 }

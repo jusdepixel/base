@@ -15,5 +15,7 @@ class AdminRepository implements AdminGateway
     /**
      * @param Admin $admin
      */
-    public function register(Admin $admin): void {}
+    public function register(Admin $admin): void
+    {
+    }
 }
